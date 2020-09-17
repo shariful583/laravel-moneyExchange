@@ -17,7 +17,7 @@ class CreateMethodsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('account')->nullable();
-            $table->enum('role',['receive-dollar','receive-bdt']);
+            $table->enum('role',['receive_dollar','receive_bdt']);
             $table->timestamps();
         });
     }
