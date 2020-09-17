@@ -20,11 +20,11 @@ class MethodController extends Controller
 
     public function addMethod(Request $request)
     {
-        $request->validate([
+
+        $validation = $request->validate([
            'name' => 'required|unique:methods',
             'role' => 'required'
         ]);
-
         try {
             $method = new Method;
             $method->name = $request->input('name');

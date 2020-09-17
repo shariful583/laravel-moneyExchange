@@ -17,8 +17,8 @@ class CreateTransactionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->enum('role',['sell','buy']);
-            $table->string('send_method');
-            $table->string('receive_method');
+            $table->unsignedBigInteger('send_method');
+            $table->unsignedBigInteger('receive_method');
             $table->float('amount_dollar');
             $table->float('amount_BDT');
             $table->string('user_money_rec_ac');
@@ -28,6 +28,8 @@ class CreateTransactionsTable extends Migration
             $table->enum('status',['pending','cancelled','succeed']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('send_method')->references('id')->on('methods')->onDelete('cascade');
+            $table->foreign('receive_method')->references('id')->on('methods')->onDelete('cascade');
         });
     }
 
