@@ -15,19 +15,11 @@ class TransactionController extends Controller
 
     public function showTransaction()
     {
-        return view('Admin.transaction');
+        $data = [];
+        $data['pending'] = Transaction::with('method')->where('status','pending')->get();
+        $data['success'] = Transaction::where('status','succeed')->get();
+        $data['cancel'] = Transaction::where('status','cancelled')->get();
+        return view('Admin.transaction')->with($data);
     }
 
-    public function transactionFetch()
-    {
-        $pending = Transaction::with('method')->where('status','pending')->get();
-        $success = Transaction::where('status','succeed')->get();
-        $cancel = Transaction::where('status','cancelled')->get();
-
-        return response()->json([
-            'pending'=>$pending,
-            'success'=>$success,
-            'cancel'=>$cancel
-        ]);
-    }
 }

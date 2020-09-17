@@ -8,11 +8,11 @@ class Transaction extends Model
 {
     public function user()
     {
-        $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function method()
     {
-        $this->belongsTo('App\Models\Method');
+        return $this->belongsTo('App\Models\Method');
     }
 }
